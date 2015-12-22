@@ -18,7 +18,7 @@ import search.BreadthFirstSearch;
 import search.DepthFirstSearch;
 import search.IterativeDeepeningDFS;
 
-public class App {
+public class GraphApp {
 
 	/**
 	 * Vertex set lists to allow pathfinding between any two vertices where the
@@ -36,11 +36,11 @@ public class App {
 
 	/**
 	 * Creates the following graph: 
-	 * 					 1 
-	 * 					/ \ 
-	 * 				   2   4 
-	 * 				  / \   \ 
-	 * 				 5   6   3
+	 * 		    1 
+	 * 		   / \ 
+	 * 		  2   4 
+	 * 		 / \   \ 
+	 * 		5   6   3
 	 * 
 	 * and returns the root node (1)
 	 */
