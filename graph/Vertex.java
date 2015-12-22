@@ -65,9 +65,26 @@ public class Vertex<T> {
 		this.previous = previous;
 	}
 	
+	
+	/** Returns a string of the path from the current node
+	 *  back to the node from which the current search
+	 *  originated from
+	 */
+	public String path() {
+		Vertex<T> iterator = this;
+		String path = "";
+		while (iterator != null) {
+			path = iterator + " " + path;
+			iterator = iterator.getPrevious();
+		}
+		return path;
+	}
+	
 	@Override
 	public String toString() {
 		if (name != null) return name;
 		else return "" + this.data;
 	}
+	
+	
 }

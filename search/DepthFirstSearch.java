@@ -45,4 +45,28 @@ public class DepthFirstSearch<T> {
 			}
 		}
 	}
+	
+	/** Uses the recursive DFS algorithm to find a path 
+	 *  between any two nodes in a graph. If no path 
+	 *  exists, an empty string is printed.
+	 *  
+	 * @param current The current vertex being examined
+	 * @param end The vertex to end the search at
+	 */
+	public boolean dfsPath(Vertex<T> current, Vertex<T> end) {
+		if (current.equals(end)) {
+			System.out.println(end.path());
+			return true;
+		}
+		for (Vertex<T> v : current.getNeighbors()) {
+			if (!v.isVisited()) {
+				v.setVisited(true);
+				v.setPrevious(current);
+				if (dfsPath(v, end)) return true;
+			}
+		}
+		
+		return false;
+	}
+	
 }

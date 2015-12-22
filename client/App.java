@@ -3,6 +3,8 @@
  * I'll add more variety later, it's actually not much more work. For now I'm
  * working on a way to streamline graph creation so that I can make complex
  * graphs automatically.
+ * 
+ * TODO: Create Graph class and move resetGraph method there
  */
 
 package client;
@@ -15,6 +17,9 @@ import search.DepthFirstSearch;
 
 public class App {
 	
+	/** Vertex set list to allow pathfinding between any two vertices
+	 *  where the indexes are (currently) the vertex's stored data
+	 */
 	private static ArrayList<Vertex<Integer>> vertexSet;
 	
 	public static void main(String[] args) {
@@ -67,27 +72,18 @@ public class App {
 	/** Runs various search algorithms */
 	private static void runSearchAlgorithms(Vertex<Integer> root) {
 		BreadthFirstSearch<Integer> bfs = new BreadthFirstSearch<Integer>();
-		System.out.println();
-		System.out.println("============================");
-		System.out.println("Running Breadth First Search");
-		System.out.println("============================");
+		printHeader("Running Breadth First Search");
 		bfs.bfs(root);
 		resetGraph(root);
-		System.out.println();
 		
 		DepthFirstSearch<Integer> dfs = new DepthFirstSearch<Integer>();
 		System.out.println();
-		System.out.println("====================================");
-		System.out.println("Running Iterative Depth First Search");
-		System.out.println("====================================");
+		printHeader("Running Iterative Depth First Search");
 		dfs.dfsIt(root);
 		resetGraph(root);
 		System.out.println();
 		
-		System.out.println();
-		System.out.println("====================================");
-		System.out.println("Running Recursive Depth First Search");
-		System.out.println("====================================");
+		printHeader("Running Recursive Depth First Search");
 		dfs.dfsRecur(root);
 		resetGraph(root);
 		System.out.println();
@@ -97,15 +93,29 @@ public class App {
 	/** Runs various pathfinding algorithms */
 	private static void runPathAlgorithms(Vertex<Integer> root) {
 		BreadthFirstSearch<Integer> bfs = new BreadthFirstSearch<Integer>();
-		System.out.println();
-		System.out.println("============================");
-		System.out.println("Finding BFS Path from 1 to 6");
-		System.out.println("============================");
+		printHeader("Finding BFS Path from 1 to 6");
 		bfs.bfsPath(vertexSet.get(1), vertexSet.get(6));
+		resetGraph(root);
+		
+		DepthFirstSearch<Integer> dfs = new DepthFirstSearch<Integer>();
+		printHeader("Finding DFS Path from 1 to 6");
+		dfs.dfsPath(vertexSet.get(1), vertexSet.get(6));
 		resetGraph(root);
 		System.out.println();
 	}
 	
+	
+	/** Prints header text for each algorithm run */
+	private static void printHeader(String headerText) {
+		String border = "";
+		for (int i = 0; i < headerText.length(); i++)
+			border += "=";
+		
+		System.out.println();
+		System.out.println(border);
+		System.out.println(headerText);
+		System.out.println(border);
+	}
 	
 	/** Recursively resets graph vertices from starting vertex of last search */
 	private static void resetGraph(Vertex<Integer> vertex) {

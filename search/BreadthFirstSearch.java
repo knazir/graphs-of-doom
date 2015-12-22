@@ -31,11 +31,12 @@ public class BreadthFirstSearch<T> {
 		}
 	}
 	
+	
 	/** Uses the breadth first search algorithm to find a path 
 	 *  between two vertices and prints it to the console. Prints
 	 *  an empty string if no path exists
 	 *  
-	 *  @param start The verte to start the path from
+	 *  @param start The vertex to start the path from
 	 *  @param end The vertex to end the path at
 	 */
 	public void bfsPath(Vertex<T> start, Vertex<T> end) {
@@ -55,26 +56,10 @@ public class BreadthFirstSearch<T> {
 				}
 				
 				if (v.equals(end)) {
-					printPath(end);
+					System.out.println(end.path());
 					break;
 				}
 			}
 		}
-	}
-	
-	/** Prints the found path to the console by following the
-	 *  passed in vertex's previous member field to the original
-	 *  starting vertex
-	 *  
-	 *  @param end The final node in the path
-	 */
-	private void printPath(Vertex<T> end) {
-		Vertex<T> current = end;
-		String path = "";
-		while (current != null) {
-			path = current + " " + path;
-			current = current.getPrevious();
-		}
-		System.out.println(path);
 	}
 }
