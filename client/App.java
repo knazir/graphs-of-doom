@@ -78,9 +78,9 @@ public class App {
 	 * 		
 	 * 				10
 	 *  	A --------------- B
-	 *  	|				  |
-	 * 	100 |				  | 10
-	 *  	|				  |
+	 *  	| \_______		  |
+	 * 	100 |	   15 \____	  | 10
+	 *  	|				\ |
 	 *  	D --------------- C
 	 * 				10
 	 * 
@@ -99,6 +99,7 @@ public class App {
 		// create edges
 		vertex1.addNeighbor(new Edge<Integer>(vertex2, 10));
 		vertex1.addNeighbor(new Edge<Integer>(vertex4, 100));
+		vertex1.addNeighbor(new Edge<Integer>(vertex3, 15));
 		vertex2.addNeighbor(new Edge<Integer>(vertex3, 10));
 		vertex3.addNeighbor(new Edge<Integer>(vertex4, 10));
 		
